@@ -2,7 +2,7 @@
 title: Diodes
 ---
 
-Diodes are one way conductors and under normal circumstances will allow current to pass from the anode to the cathode.  The symbol for a diode is:
+Diodes are one-way conductors and under normal circumstances will allow current to pass from the anode to the cathode.  The symbol for a diode is:
 
 ![Diode Circuit Symbol](/Common_Files/Diode.svg)
 
@@ -23,7 +23,7 @@ Diodes have a number of uses:
 
 ### Light Emitting Diode (LED)
 
-A Light Emitting Diode (LED) is a small compact device capable of generating light when a current flows though it.  LEDs are available in a number of different colours.  A fuller description of LEDs and their properties and used can be found [here](../LEDs).
+A Light Emitting Diode (LED) is a small compact device capable of generating light when a current flows though it.  LEDs are available in a number of different colors.  A fuller description of LEDs and their properties and used can be found [here](../LEDs).
 
 ### Bridge Rectifier
 

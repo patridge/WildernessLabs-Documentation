@@ -38,7 +38,7 @@ Maximum current (I<sub>fmax</sub>) rating is the maximum current that can flow t
 
 LEDs are available in a variety of colors, the most common of which are red, green, yellow, white and blue.
 
-RGB (Red, Green and Blue) LEDs are capable of displaying a wide variety of colors.  These LEDs are actually three LEDs, one red, one green and one blue in a single package (see the LED with four legs in the above image).  The wide variety of colours they are capable of displaying comes from the intensity of each of the three LEDs.
+RGB (Red, Green and Blue) LEDs are capable of displaying a wide variety of colors.  These LEDs are actually three LEDs, one red, one green and one blue in a single package (see the LED with four legs in the above image).  The wide variety of colors they are capable of displaying comes from the intensity of each of the three LEDs.
 
 LEDs can also emit light in the infrared spectrum.  These LEDs are used in remote controls for devices such as televisions and cameras.
 
@@ -71,7 +71,7 @@ In recent years a number of digital RGB LEDs have become available.  These produ
 
 These devices are available as single units as well as flexible strips, straight PCB and full or quarter circular PCBs.
 
-The driver in the WS8211 LEDs requires precise timing control in order to be able to set the colour of the LED.  The APA102 is more forgiving as this uses a basic serial protocol (data and clock only).  The APA102 chips are better suited to the Netduino.
+The driver in the WS8211 LEDs requires precise timing control in order to be able to set the color of the LED.  The APA102 is more forgiving as this uses a basic serial protocol (data and clock only).  The APA102 chips are better suited to the Netduino.
 
 # Further Information
 
