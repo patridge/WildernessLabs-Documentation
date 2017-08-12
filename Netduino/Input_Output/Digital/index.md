@@ -82,11 +82,11 @@ namespace ButtonInterruptEvents
 
 		}
 
-		static void handleButtonClick (uint port, uint data, DateTime time)
+		static void handleButtonClick(uint port, uint data, DateTime time)
 		{
 			// will be 1 when pressed (raised high), and 0, when unpressed
-			Debug.Print ("Data: " + data.ToString ());
-			_led.Write (data == 1);
+			Debug.Print("Data: " + data.ToString());
+			_led.Write(data == 1);
 		}
 	}
 }

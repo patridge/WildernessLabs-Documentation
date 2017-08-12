@@ -278,7 +278,7 @@ Next operation is to change the mode to 13-bit mode by changing the configuratio
 ```CSharp
 byte[] currentConfig = ReadTMP102Configuration(tmp102);
 I2CDevice.I2CTransaction[] changeConfig = new I2CDevice.I2CTransaction[1];
-byte[] newConfiguration = { 0x01, currentConfig[0], (byte) (currentConfig[1] | 0x10) };
+byte[] newConfiguration = { 0x01, currentConfig[0], (byte)(currentConfig[1] | 0x10) };
 changeConfig[0] = I2CDevice.CreateWriteTransaction(newConfiguration);
 tmp102.Execute(changeConfig, 100);
 Thread.Sleep(1000);

@@ -85,7 +85,7 @@ namespace NetduinoBlink
 				led.Write(false); // turn off the LED 
 				Thread.Sleep(250); // sleep for 250ms 
 
-				Debug.Print ("Looping" + i);
+				Debug.Print("Looping" + i);
 				i++;
 			} 
 

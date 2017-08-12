@@ -15,17 +15,17 @@ namespace RgbLed
 	public class Program
 	{
 		public static void Main()
-		{			
-			PWM redLed = new PWM (PWMChannels.PWM_PIN_D11, 100, 0, false);
-			PWM greenLed = new PWM (PWMChannels.PWM_PIN_D10, 100, 0, false);
-			PWM blueLed = new PWM (PWMChannels.PWM_PIN_D9, 100, 0, false);
+		{
+			PWM redLed = new PWM(PWMChannels.PWM_PIN_D11, 100, 0, false);
+			PWM greenLed = new PWM(PWMChannels.PWM_PIN_D10, 100, 0, false);
+			PWM blueLed = new PWM(PWMChannels.PWM_PIN_D9, 100, 0, false);
 
 			double dutyCycleMax = .3; // RGB Led doesn't seem to get much brighter than at 30%
  
 			while (true) {
-				redLed.Start ();
-				greenLed.Start ();
-				blueLed.Start ();
+				redLed.Start();
+				greenLed.Start();
+				blueLed.Start();
 
 				double r, g, b;
 
@@ -37,9 +37,9 @@ namespace RgbLed
 					blueLed.DutyCycle = (b * dutyCycleMax);
 
 					// for a fun, fast rotation through the hue spectrum:
-					//Thread.Sleep (1);
+					//Thread.Sleep(1);
 					// for a gentle walk through the forest of colors;
-					Thread.Sleep (18);
+					Thread.Sleep(18);
 
 				}
 			}

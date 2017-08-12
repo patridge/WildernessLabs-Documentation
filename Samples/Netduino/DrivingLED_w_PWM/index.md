@@ -31,18 +31,18 @@ namespace DrivingLED_w_PWM
 
 			// Create a PWM signal on the onboard LED by specifying the period and duration 
 			// in milliseconds. this will be a 33% duty cycle (on 1/3rd of the time)
-			PWM periodDurationPwm = new PWM (PWMChannels.PWM_ONBOARD_LED, 
+			PWM periodDurationPwm = new PWM(PWMChannels.PWM_ONBOARD_LED, 
 				3, 1, PWM.ScaleFactor.Milliseconds, false);
 
 			// alternate between the 50% duty cycle and the 33% duty cycle every second
 			while (true) {
-				dutyCyclePwm.Start ();
-				Thread.Sleep (1000);
-				dutyCyclePwm.Stop ();
+				dutyCyclePwm.Start();
+				Thread.Sleep(1000);
+				dutyCyclePwm.Stop();
 
-				periodDurationPwm.Start ();
-				Thread.Sleep (1000);
-				periodDurationPwm.Stop ();
+				periodDurationPwm.Start();
+				Thread.Sleep(1000);
+				periodDurationPwm.Stop();
 			}
 		}
 	}

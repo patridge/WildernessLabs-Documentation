@@ -40,8 +40,8 @@ If DHCP is configured, a call to the static `IPAddress.GetDefaultLocalAddress()`
 
 ```CSharp
 while (IPAddress.GetDefaultLocalAddress () == IPAddress.Any) {
-	Debug.Print ("Sleep while obtaining an IP");
-	Thread.Sleep (10);
+	Debug.Print("Sleep while obtaining an IP");
+	Thread.Sleep(10);
 };
 ```
 `IPAddress.Any` returns an empty IP address (`0.0.0.0`), so this loop will run until a real IP Address is obtained.
@@ -52,8 +52,8 @@ When using a static IP, add the `NetduinoExtensions.dll` reference and make a ca
 
 ```
 while (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable()) {
-	Debug.Print ("Sleep while obtaining waiting for the network to initialize.");
-	Thread.Sleep (10);
+	Debug.Print("Sleep while obtaining waiting for the network to initialize.");
+	Thread.Sleep(10);
 };
 ```
 
@@ -81,8 +81,8 @@ namespace Blinky
 		public static void Main()
 		{
 			
-			App app = new App ();
-			app.Run ();
+			App app = new App();
+			app.Run();
 
 			OutputPort led = new OutputPort(Pins.ONBOARD_LED, false);
 			while (app.IsRunning)
@@ -94,9 +94,9 @@ namespace Blinky
 
 			}
 
-			Debug.Print ("App finished.");
-			Debug.Print ("I've seen things you people wouldn't believe. Attack ships on fire off the shoulder of Orion. I watched C-beams glitter in the dark near the Tannhäuser Gate. All those moments will be lost in time, like tears in rain.");
-			Debug.Print ("Time to die.");
+			Debug.Print("App finished.");
+			Debug.Print("I've seen things you people wouldn't believe. Attack ships on fire off the shoulder of Orion. I watched C-beams glitter in the dark near the Tannhäuser Gate. All those moments will be lost in time, like tears in rain.");
+			Debug.Print("Time to die.");
 		}
 	}
 
@@ -110,10 +110,10 @@ namespace Blinky
 		public void Run()
 		{
 			this.IsRunning = true;
-			bool goodToGo = InitializeNetwork ();
+			bool goodToGo = InitializeNetwork();
 
 			if (goodToGo) {
-				MakeWebRequest ("http://google.com");
+				MakeWebRequest("http://google.com");
 			}
 
 			this.IsRunning = false;
@@ -131,28 +131,28 @@ namespace Blinky
 			_interfaces = NetworkInterface.GetAllNetworkInterfaces();
 
 			// debug output
-			ListNetworkInterfaces ();
+			ListNetworkInterfaces();
 
 			// loop through each network interface
 			foreach (var net in _interfaces) {
 
 				// debug out
-				ListNetworkInfo (net);
+				ListNetworkInfo(net);
 
 				switch (net.NetworkInterfaceType) {
 				case (NetworkInterfaceType.Ethernet):
-					Debug.Print ("Found Ethernet Interface");
+					Debug.Print("Found Ethernet Interface");
 					break;
 				case (NetworkInterfaceType.Wireless80211):
-					Debug.Print ("Found 802.11 WiFi Interface");
+					Debug.Print("Found 802.11 WiFi Interface");
 					break;
 				case (NetworkInterfaceType.Unknown):
-					Debug.Print ("Found Unknown Interface");
+					Debug.Print("Found Unknown Interface");
 					break;
 				}
 
 				// check for an IP address, try to get one if it's empty
-				return CheckIPAddress (net);
+				return CheckIPAddress(net);
 			}
 
 			// if we got here, should be false.
@@ -173,49 +173,49 @@ namespace Blinky
 		}
 
 
-		protected bool CheckIPAddress (NetworkInterface net)
+		protected bool CheckIPAddress(NetworkInterface net)
 		{
 			int timeout = 10000; // timeout, in milliseconds to wait for an IP. 10,000 = 10 seconds
 
 			// check to see if the IP address is empty (0.0.0.0). IPAddress.Any is 0.0.0.0.
 			if (net.IPAddress == IPAddress.Any.ToString()) {
-				Debug.Print ("No IP Address");
+				Debug.Print("No IP Address");
 
 				if (net.IsDhcpEnabled) {
-					Debug.Print ("DHCP is enabled, attempting to get an IP Address");
+					Debug.Print("DHCP is enabled, attempting to get an IP Address");
 
 					// ask for an IP address from DHCP [note this is a static, not sure which network interface it would act on]
 					int sleepInterval = 10;
 					int maxIntervalCount = timeout / sleepInterval;
 					int count = 0;
-					while (IPAddress.GetDefaultLocalAddress () == IPAddress.Any && count < maxIntervalCount) {
-						Debug.Print ("Sleep while obtaining an IP");
-						Thread.Sleep (10);
+					while (IPAddress.GetDefaultLocalAddress() == IPAddress.Any && count < maxIntervalCount) {
+						Debug.Print("Sleep while obtaining an IP");
+						Thread.Sleep(10);
 						count++;
 					};
 
 					// if we got here, we either timed out or got an address, so let's find out.
 					if (net.IPAddress == IPAddress.Any.ToString()) {
-						Debug.Print ("Failed to get an IP Address in the alotted time.");
+						Debug.Print("Failed to get an IP Address in the alotted time.");
 						return false;
 					}
 
-					Debug.Print ("Got IP Address: " + net.IPAddress.ToString ());
+					Debug.Print("Got IP Address: " + net.IPAddress.ToString());
 					return true;
 
 					//NOTE: this does not work, even though it's on the actual network device. [shrug]
 					// try to renew the DHCP lease and get a new IP Address
-					//net.RenewDhcpLease ();
+					//net.RenewDhcpLease();
 					//while (net.IPAddress == "0.0.0.0") {
-					//	Thread.Sleep (10);
+					//	Thread.Sleep(10);
 					//}
 
 				} else {
-					Debug.Print ("DHCP is not enabled, and no IP address is configured, bailing out.");
+					Debug.Print("DHCP is not enabled, and no IP address is configured, bailing out.");
 					return false;
 				}
 			} else {
-				Debug.Print ("Already had IP Address: " + net.IPAddress.ToString ());
+				Debug.Print("Already had IP Address: " + net.IPAddress.ToString());
 				return true;
 			}
 
@@ -226,13 +226,13 @@ namespace Blinky
 			foreach (var net in _interfaces) {
 				switch (net.NetworkInterfaceType) {
 				case (NetworkInterfaceType.Ethernet):
-					Debug.Print ("Found Ethernet Interface");
+					Debug.Print("Found Ethernet Interface");
 					break;
 				case (NetworkInterfaceType.Wireless80211):
-					Debug.Print ("Found 802.11 WiFi Interface");
+					Debug.Print("Found 802.11 WiFi Interface");
 					break;
 				case (NetworkInterfaceType.Unknown):
-					Debug.Print ("Found Unknown Interface");
+					Debug.Print("Found Unknown Interface");
 					break;
 
 				}
@@ -250,7 +250,7 @@ namespace Blinky
 
 			if (net is Wireless80211) {
 				var wifi = net as Wireless80211;
-				Debug.Print ("SSID:" + wifi.Ssid.ToString ());
+				Debug.Print("SSID:" + wifi.Ssid.ToString());
 			}
 
 		}
