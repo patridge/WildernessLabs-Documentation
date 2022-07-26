@@ -6,7 +6,7 @@ subtitle: Calculating
 
 ## Quick Reference
 
-![](/Hardware/Tutorials/Electronics/Part5/Voltage_Division/Voltage_Divider_Equation.svg){:standalone}
+![Circuit diagram showing a voltage source connected to two resistors in series where a voltage from the source negative and between the two resistors is calculated as V-out according to the formula that follows.](/Hardware/Tutorials/Electronics/Part5/Voltage_Division/Support_Files/Voltage_Divider_Equation.svg){:standalone}
 
 ### Voltage Division Calculations
 
