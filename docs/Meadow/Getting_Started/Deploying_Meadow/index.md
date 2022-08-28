@@ -16,25 +16,26 @@ When you receive your Meadow board, it will need to have the latest Meadow.OS up
 [//]: # (Whenever editing these OS sections, make sure any common instructions are edited in the other OS sections as well to keep them in sync with each other.)
 
 ### Install .NET SDK
-Download and install [.NET 5.0 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/5.0)
+
+Download and install the latest [.NET 6 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/6.0).
 
 ### Install or update Meadow CLI
 To install Meadow CLI, execute the following command in your console:
 
-```
+```console
 dotnet tool install WildernessLabs.Meadow.CLI --global
 ```
 
 To update Meadow CLI, if already installed, execute the following command in your console:
 
-```
+```console
 dotnet tool update WildernessLabs.Meadow.CLI --global
 ```
 
 ### Install dfu-util
 From a console with admin rights, execute following command:
 
-```
+```console
 meadow install dfu-util
 ```
 
@@ -57,7 +58,7 @@ In order to flash Meadow OS, *dfu-util* is recommended. However, the default Win
 ### Download Meadow OS and network binaries
 Execute the following command in your console:
 
-```
+```console
 meadow download os
 ```
 
@@ -76,7 +77,7 @@ Now you have two options, please try option 1 first:
 #### Option 1 (from bootloader mode) 
 Once connected the Meadow device via the USB cable and having put the device into DFU Bootloader mode, execute the following command in your console:
 
-```
+```console
 meadow flash os
 ```
 
@@ -90,35 +91,43 @@ Reset the device (push the RST button or disconnect and reconnect) and identify 
 
 Once you've identified the port name, run the following command in your console replacing [PORT] with the serial port name:
 
-```
+```console
 meadow flash os -s [PORT]
 ```
 
 **NOTE: If the process hangs on _Opening port '[PORT]'..._, hit the RST button on the device.**
 
-Unplug and replug Meadow to give it a full restart.
+Unplug and reconnect the Meadow board to give it a full restart.
 Your board is now ready to have a Meadow application deployed to it!
 
 ## macOS
 
 [//]: # (Whenever editing these OS sections, make sure any common instructions are edited in the other OS sections as well to keep them in sync with each other.)
 
-Please note: You will need to run the upcoming commands from within a **`bash` shell**, rather than the default `zsh` shell.
-
 ### Install .NET SDK
-Download and install [.NET 5.0 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/5.0).
+
+Download and install the latest [.NET 6 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/6.0) for your Mac's processor architecture.
+
+Even if you are working on an ARM-based computer, such as Apple M1, M1 Pro, or M2 CPUs, you should still install the x86 version of the .NET SDK.
 
 ### Install or update Meadow CLI
 To install Meadow CLI, execute the following command in your terminal:
 
-```
+```console
 dotnet tool install WildernessLabs.Meadow.CLI --global
 ```
 
 To update Meadow CLI, if already installed, execute the following command in your terminal:
 
-```
+```console
 dotnet tool update WildernessLabs.Meadow.CLI --global
+```
+
+If you are working on an ARM-based Mac (M1, M1 Pro, M2 CPU), you will also need to explicitly add the x64 version of `libusb` and add an additional location to your `PATH` variable that aren't added by default on those systems.
+
+```console
+arch -x86_64 brew install libusb
+export PATH=/usr/local/share/dotnet/x64/:$PATH
 ```
 
 ### Install dfu-util
@@ -127,15 +136,24 @@ To install `dfu-util`, we'll be using **Homebrew**. If you don't have it yet, [i
 
 Execute the following command in your terminal:
 
-```
+```console
 brew install dfu-util
 ```
 
 ### Download Meadow OS and network binaries
+
 Execute the following command in your terminal:
 
-```
+```console
 meadow download os
+```
+
+**NOTE: If the `meadow` command returns an error: command not found:**
+
+If your terminal cannot find the `meadow` command, it means the .NET SDK didn't add the global tool installation location to your shell's `PATH` variable. Run the following command to add that location to your `PATH` variable so your terminal knows where to find the `meadow` command. Then run the OS download command from above one more time.
+
+```console
+export PATH="$PATH:$HOME/.dotnet/tools"
 ```
 
 ### Put the device into DFU Bootloader mode.
@@ -153,7 +171,7 @@ Now you have two options, please try the option 1 first:
 #### Option 1 (from bootloader mode) 
 Once connected the Meadow device via the USB cable and having put the device into DFU Bootloader mode, execute the following command in your terminal:
 
-```
+```console
 meadow flash os
 ```
 
@@ -163,14 +181,14 @@ Reset the device (push the RST button or disconnect and reconnect) and identify 
 
 Execute the following command in your terminal:
 
-```
+```console
 ls /dev/tty.usb*
 ```
 
 The port should be something like `/dev/tty.usbmodem01`.
 Once you've identified the port name, run the following command in your console replacing [PORT] with the serial port name:
 
-```
+```console
 meadow flash os -s [PORT]
 ```
 
@@ -186,39 +204,40 @@ Your board is now ready to have a Meadow application deployed to it!
 Please note: Linux may require `sudo` to access USB devices.
 
 ### Install .NET SDK
-Download and install [.NET 5.0 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/5.0)
+
+Download and install the latest [.NET 6 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/6.0).
 
 ### Install or update Meadow CLI
 To install Meadow CLI, execute the following command in your terminal:
 
-```
+```console
 dotnet tool install WildernessLabs.Meadow.CLI --global
 ```
 
 To update Meadow CLI, if already installed, execute the following command in your terminal:
 
-```
+```console
 dotnet tool update WildernessLabs.Meadow.CLI --global
 ```
 
 ### Install dfu-util
 Execute the following command in your terminal:
 
-```
+```console
 sudo apt-get install dfu-util
 ```
 
 ### Install libusb
 Execute the following command in your terminal:
 
-```
+```console
 sudo apt-get install libusb-1.0-0-dev
 ```
 
 ### Download Meadow OS and network binaries
 Execute the following command in your terminal:
 
-```
+```console
 meadow download os
 ```
 
@@ -237,19 +256,19 @@ To be able to access the device a udev rule needs to be added.
 * Create the file `50-meadow.rules`
 * Add the following to the file:
 
-```
+```console
 SUBSYSTEM=="usb", ATTR{idProduct}=="df11", ATTR{idVendor}=="0483", MODE="0666", GROUP="user", TAG+="uaccess"
 ```
 
 To verify the Product ID and Vendor ID execute the following command in your terminal:
 
-```
+```console
 lsusb
 ```
 
 You should be able to find a entry similar to the following:
 
-```
+```console
 Bus 001 Device 009: ID 0483:df11 STMicroelectronics STM Device in DFU Mode
 ```
 
@@ -261,7 +280,7 @@ Now you have two options, please try the option 1 first:
 #### Option 1 (from bootloader mode) 
 Once connected the Meadow device via the USB cable and having put the device into DFU Bootloader mode, execute the following command in your terminal:
 
-```
+```console
 meadow flash os
 ```
 
@@ -272,7 +291,7 @@ Reset the device (push the RST button or disconnect and reconnect) and identify 
 To get access to the port your user needs to be added to the group `dialout`.  
 This is done with the command:
 
-```
+```console
 sudo adduser {your_user} dialout
 ```
 
@@ -280,13 +299,13 @@ Replace `{your_user}` with the user name. You need to **logout and login** again
 
 To find the Port where the Meadow is connected execute the following command in your terminal:
 
-```
+```console
 ls -l /dev
 ```
 
 look for
 
-```
+```console
 ttyAMC0
 ```
 
@@ -294,7 +313,7 @@ or similar. The port might change between reboots of the Meadow so make sure to 
 
 Once you've identified the port name, run the following command in your console replacing [PORT] with the serial port name:
 
-```
+```console
 meadow flash os -s [PORT]
 ```
 
